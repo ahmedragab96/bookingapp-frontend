@@ -3,16 +3,25 @@ import './App.css';
 import {
   BrowserRouter,
   Route,
+  Switch,
+  Redirect,
 } from 'react-router-dom';
+import LoginScreen from './screens/loginScreen';
 
 function App() {
   return (
     <BrowserRouter>
-      <Route
-        path='/'
-        exact={true}
-        render={() => {return <h1>it works!!!!!!</h1>}}
-      />
+      <Switch>
+        <Redirect
+          from='/'
+          exact={true}
+          to='/login'
+        />
+        <Route
+          path='/login'
+          component={LoginScreen}
+        />
+      </Switch>
     </BrowserRouter>
   );
 }
