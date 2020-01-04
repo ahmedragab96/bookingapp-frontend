@@ -7,22 +7,32 @@ import {
   Redirect,
 } from 'react-router-dom';
 import LoginScreen from './screens/loginScreen';
+import {
+  client,
+} from './apollo/apolloConfig';
+import {
+  ApolloProvider,
+} from 'react-apollo';
+
+
 
 function App() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Redirect
-          from='/'
-          exact={true}
-          to='/login'
-        />
-        <Route
-          path='/login'
-          component={LoginScreen}
-        />
-      </Switch>
-    </BrowserRouter>
+    <ApolloProvider client={client}>
+      <BrowserRouter>
+        <Switch>
+          <Redirect
+            from='/'
+            exact={true}
+            to='/login'
+          />
+          <Route
+            path='/login'
+            component={LoginScreen}
+          />
+        </Switch>
+      </BrowserRouter>
+    </ApolloProvider>
   );
 }
 
