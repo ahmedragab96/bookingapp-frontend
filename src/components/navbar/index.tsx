@@ -13,14 +13,16 @@ import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import EventIcon from '@material-ui/icons/Event';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import BurstModeIcon from '@material-ui/icons/BurstMode';
 import styles from './styles';
 
 interface State {
   isMenuOpened: boolean;
   isMobileMenuOpened: boolean;
   anchorEl: null | HTMLElement;
-  mobileAnchorEl: null | HTMLElement
+  mobileAnchorEl: null | HTMLElement;
 }
 
 class NavBar extends React.Component<{}, State> {
@@ -37,6 +39,7 @@ class NavBar extends React.Component<{}, State> {
   handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     this.setState({
       anchorEl: event.currentTarget,
+      isMenuOpened: true,
     });
   };
 
@@ -69,17 +72,17 @@ class NavBar extends React.Component<{}, State> {
     } = this.state;
     return (
       <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={'primary-search-account-menu'}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMenuOpened}
-      onClose={this.handleMenuClose}
-    >
-      <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
-    </Menu>
+        anchorEl={anchorEl}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        id={'primary-search-account-menu'}
+        keepMounted
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        open={isMenuOpened}
+        onClose={this.handleMenuClose}
+      >
+        <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
+        <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
+      </Menu>
     );
   }
 
@@ -143,7 +146,7 @@ class NavBar extends React.Component<{}, State> {
               <MenuIcon />
             </IconButton>
             <Typography style={styles.title} variant="h6" noWrap>
-              Material-UI
+              iEvents
           </Typography>
             <div style={styles.search}>
               <div style={styles.searchIcon}>
@@ -159,26 +162,35 @@ class NavBar extends React.Component<{}, State> {
             </div>
             <div style={styles.grow} />
             <div style={styles.sectionDesktop}>
-              <IconButton aria-label="show 4 new mails" color="inherit">
-                <Badge badgeContent={4} color="secondary">
-                  <MailIcon />
-                </Badge>
-              </IconButton>
-              <IconButton aria-label="show 17 new notifications" color="inherit">
-                <Badge badgeContent={17} color="secondary">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
-              <IconButton
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={'primary-search-account-menu'}
-                aria-haspopup="true"
-                onClick={this.handleProfileMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
+              <div style={{display: 'flex', flexDirection: 'row' , margin: '0 20px 0 20px', }} onClick={() => alert('events')}>
+                <IconButton aria-label="show 4 new mails" color="inherit">
+                  <Badge  color="secondary">
+                    <EventIcon />
+                  </Badge>
+                </IconButton>
+                <p>Events</p>
+              </div>
+              <div style={{display: 'flex', flexDirection: 'row' , margin: '0 20px 0 20px'}}>
+                <IconButton aria-label="show 17 new notifications" color="inherit">
+                  <Badge color="secondary">
+                    <BurstModeIcon />
+                  </Badge>
+                </IconButton>
+                <p>Bookings</p>
+              </div>
+              <div style={{display: 'flex', flexDirection: 'row', margin: '0 20px 0 20px'}}>
+                <IconButton
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={'primary-search-account-menu'}
+                  aria-haspopup="true"
+                  onClick={this.handleProfileMenuOpen}
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+                <p style={{marginLeft: 10}}>Profile</p>
+              </div> 
             </div>
             <div style={styles.sectionMobile}>
               <IconButton
@@ -194,7 +206,7 @@ class NavBar extends React.Component<{}, State> {
           </Toolbar>
         </AppBar>
         {/* {this.renderMobileMenu} */}
-        {/* {this.renderMenu} */}
+        {this.renderMenu()}
       </div>
     );
   }

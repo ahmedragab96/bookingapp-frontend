@@ -28,11 +28,13 @@ const styles: IStyles = {
     // flexDirection: 'row',
     borderRadius: 5,
     backgroundColor: fade('#FFFFFF', 0.15),
-    '&:hover': {
+    '&::hover': {
       backgroundColor: fade('#000000', 0.25),
+      borderRadius: 20,
     },
-    'counter-set': {
+    '&:counter-set': {
       backgroundColor: fade('#000000', 0.25),
+      borderRadius: 20,
     },
     counterSet: {
       backgroundColor: fade('#000000', 0.25),
