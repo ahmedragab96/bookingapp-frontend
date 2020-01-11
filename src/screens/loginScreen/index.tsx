@@ -1,35 +1,39 @@
 import React from 'react';
 
-import styles from './styles';
 import NavBar from '../../components/navbar';
-import image from '../../assests/events.jpg';
 import logo from '../../assests/eventsLogo.jpg';
 import {
   Formik,
-  FormikHelpers,
-  FormikProps,
   Form,
   Field,
-  FieldProps,
   ErrorMessage,
 } from 'formik';
-import { graphql } from 'react-apollo';
-import {flowRight as compose} from 'lodash';
-import { signupQuery } from '../../apollo/requests/authRequests';
+import {
+  graphql,
+} from 'react-apollo';
+// import {flowRight as compose} from 'lodash';
+import {
+  signupQuery,
+} from '../../apollo/requests/authRequests';
+import styles from './styles.module.scss';
 
 
 class LoginScreen extends React.Component<any, any> {
-
-  constructor(props: {}) {
-    super(props);
-  }
   render() {
     return (
       <div>
         <NavBar />
-        <div style={{ width: '100%', maxHeight: '100vh', height: 'calc(100vh - 64px)', overflow: 'hidden', backgroundImage: `url(${image})`, backgroundSize: 'cover', display: 'flex', justifyContent: 'center', flexDirection: 'column', backgroundRepeat: 'no-repeat' }}>
-          <div style={{ width: '27%', height: '70%', backgroundColor: '#332637', marginLeft: 30, borderRadius: 10 }}>
-            <img src={logo} style={{ width: '100%', borderRadius: 10 }} />
+        <div
+          className={styles.screenContainer}
+        >
+          <div
+            className={styles.loginCardConatiner}
+          >
+            <img
+              src={logo}
+              alt={'logo'}
+              className={styles.logoImage}
+            />
             <Formik
               initialValues={{ email: '', password: '' }}
               validate={values => {
@@ -54,14 +58,28 @@ class LoginScreen extends React.Component<any, any> {
               }}
             >
               {({ isSubmitting }) => (
-                <Form style={{ display: 'flex', flexDirection: 'column' }}>
-                  <Field style={{ borderRadius: 5, margin: 8, padding: 10 }} type="email" name="email" />
+                <Form
+                  className={styles.formConatiner}
+                >
+                  <Field
+                    className={styles.formField}
+                    type="email"
+                    name="email"
+                  />
                   <ErrorMessage name="email" component="div" />
-                  <Field style={{ borderRadius: 5, margin: 8, padding: 10 }} type="password" name="password" />
+                  <Field
+                    className={styles.formField}
+                    type="password"
+                    name="password"
+                  />
                   <ErrorMessage name="password" component="div" />
-                  <button style={{ borderRadius: 5, margin: 8, padding: 10 }} type="submit" disabled={isSubmitting}>
+                  <button
+                    className={styles.formField}
+                    type="submit"
+                    disabled={isSubmitting}
+                  >
                     Submit
-                </button>
+                  </button>
                 </Form>
               )}
             </Formik>

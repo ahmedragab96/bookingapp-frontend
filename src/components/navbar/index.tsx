@@ -16,7 +16,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import EventIcon from '@material-ui/icons/Event';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import BurstModeIcon from '@material-ui/icons/BurstMode';
-import styles from './styles';
+import styles from './styles.module.scss';
 
 interface State {
   isMenuOpened: boolean;
@@ -134,35 +134,46 @@ class NavBar extends React.Component<{}, State> {
   render() {
 
     return (
-      <div style={styles.grow}>
+      <div className={styles.grow}>
         <AppBar position="static">
           <Toolbar>
             <IconButton
               edge="start"
-              style={styles.menuButton}
+              className={styles.menuButton}
               color="inherit"
               aria-label="open drawer"
             >
               <MenuIcon />
             </IconButton>
-            <Typography style={styles.title} variant="h6" noWrap>
+            <Typography className={styles.title} variant="h6" noWrap>
               iEvents
           </Typography>
-            <div style={styles.search}>
-              <div style={styles.searchIcon}>
+            <div
+              className={styles.search}
+            >
+              <div
+                className={styles.searchIcon}
+              >
                 <SearchIcon />
               </div>
               <div>
                 <InputBase
                   placeholder="Search…"
-                  style={styles.inputInput}
+                  className={styles.inputInput}
                   inputProps={{ 'aria-label': 'search' }}
                 />
               </div>
             </div>
-            <div style={styles.grow} />
-            <div style={styles.sectionDesktop}>
-              <div style={{display: 'flex', flexDirection: 'row' , margin: '0 20px 0 20px', }} onClick={() => alert('events')}>
+            <div
+              className={styles.grow}
+            />
+            <div
+              className={styles.sectionDesktop}
+            >
+              <div
+                className={styles.eventsTab}
+                onClick={() => alert('events')}
+              >
                 <IconButton aria-label="show 4 new mails" color="inherit">
                   <Badge  color="secondary">
                     <EventIcon />
@@ -170,7 +181,9 @@ class NavBar extends React.Component<{}, State> {
                 </IconButton>
                 <p>Events</p>
               </div>
-              <div style={{display: 'flex', flexDirection: 'row' , margin: '0 20px 0 20px'}}>
+              <div
+                className={styles.eventsTab}
+              >
                 <IconButton aria-label="show 17 new notifications" color="inherit">
                   <Badge color="secondary">
                     <BurstModeIcon />
@@ -178,7 +191,9 @@ class NavBar extends React.Component<{}, State> {
                 </IconButton>
                 <p>Bookings</p>
               </div>
-              <div style={{display: 'flex', flexDirection: 'row', margin: '0 20px 0 20px'}}>
+              <div
+                className={styles.eventsTab}
+              >
                 <IconButton
                   edge="end"
                   aria-label="account of current user"
@@ -189,10 +204,16 @@ class NavBar extends React.Component<{}, State> {
                 >
                   <AccountCircle />
                 </IconButton>
-                <p style={{marginLeft: 10}}>Profile</p>
+                <p
+                  style={{marginLeft: 10}}
+                >
+                  Profile
+                </p>
               </div> 
             </div>
-            <div style={styles.sectionMobile}>
+            <div
+              className={styles.sectionMobile}
+            >
               <IconButton
                 aria-label="show more"
                 aria-controls={'primary-search-account-menu-mobile'}

@@ -1,0 +1,38 @@
+.screenContainer {
+  width: 100%;
+  max-height: 100vh;
+  height: calc(100vh - 64px);
+  overflow: hidden;
+  background-image: url('../../assests/events.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  justify-content: center;
+  display: flex;
+  flex-direction: column ;
+}
+
+.loginCardConatiner {
+  background-color: #332637;
+  width: 27%;
+  height: 70%;
+  margin-left: 50px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column ;
+}
+
+.logoImage {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.formConatiner {
+  display: flex;
+  flex-direction: column;
+}
+
+.formField {
+  border-radius: 5px;
+  margin: 8px;
+  padding: 10px;
+}
