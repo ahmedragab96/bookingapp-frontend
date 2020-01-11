@@ -135,7 +135,7 @@ class NavBar extends React.Component<{}, State> {
 
     return (
       <div className={styles.grow}>
-        <AppBar position="static">
+        <AppBar position='static' className={styles.navbar}>
           <Toolbar>
             <IconButton
               edge="start"

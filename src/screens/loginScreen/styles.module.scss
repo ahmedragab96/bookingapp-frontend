@@ -36,3 +36,39 @@
   margin: 8px;
   padding: 10px;
 }
+.errorMessage {
+  color: red;
+  padding: 5px;
+  margin-left: 10px;
+}
+
+.buttonConatiner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 30px 10px 0 10px;
+}
+
+.loginButtn {
+  display: flex;
+  flex-direction: row;
+}
+
+.signupText {
+  color: white;
+  margin: 15px;
+}
+
+.fabicon {
+  background-color: rgb(121, 50, 187) !important;
+}
+
+.forgetPasswordText {
+  color: white;
+  margin: 5px;
+  float: right;
+  &:hover {
+    cursor: pointer;
+    color: blueviolet;
+  }
+}

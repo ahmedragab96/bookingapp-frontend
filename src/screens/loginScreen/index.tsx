@@ -16,6 +16,9 @@ import {
   signupQuery,
 } from '../../apollo/requests/authRequests';
 import styles from './styles.module.scss';
+import Fab from '@material-ui/core/Fab';
+import ArrowBackOutlined from '@material-ui/icons/ArrowBackOutlined';
+import ArrwowForwardOutlined from '@material-ui/icons/ArrowForwardOutlined';
 
 
 class LoginScreen extends React.Component<any, any> {
@@ -49,12 +52,12 @@ class LoginScreen extends React.Component<any, any> {
               }}
               onSubmit={(values, { setSubmitting }) => {
                 console.log(values);
-                this.props.signup({
-                  variables: {
-                    email: values.email,
-                    password: values.password,
-                  }
-                })
+                // this.props.signup({
+                //   variables: {
+                //     email: values.email,
+                //     password: values.password,
+                //   }
+                // })
               }}
             >
               {({ isSubmitting }) => (
@@ -62,24 +65,44 @@ class LoginScreen extends React.Component<any, any> {
                   className={styles.formConatiner}
                 >
                   <Field
+                    placeHolder={'Email : example@example.com'}
                     className={styles.formField}
                     type="email"
                     name="email"
                   />
-                  <ErrorMessage name="email" component="div" />
+                  <ErrorMessage
+                    name="email"
+                    component="div"
+                    className={styles.errorMessage}
+                  />
                   <Field
+                    placeHolder={'Password : **********'}
                     className={styles.formField}
                     type="password"
                     name="password"
                   />
-                  <ErrorMessage name="password" component="div" />
-                  <button
-                    className={styles.formField}
-                    type="submit"
-                    disabled={isSubmitting}
-                  >
-                    Submit
-                  </button>
+                  <ErrorMessage
+                    name="password"
+                    component="div"
+                    className={styles.errorMessage}
+                  />
+                  <div>
+                    <p className={styles.forgetPasswordText}>Forgot Password ?</p>
+                  </div>
+                  <div className={styles.buttonConatiner}>
+                    <div className={styles.loginButtn}>
+                      <Fab size={'medium'} color="default" aria-label="add" className={styles.fabicon}>
+                        <ArrowBackOutlined />
+                      </Fab>
+                      <p className={styles.signupText}>create account</p>
+                    </div>
+                    <div className={styles.loginButtn}>
+                      <p className={styles.signupText}>login</p>
+                      <Fab size={'medium'} color="default" aria-label="add" className={styles.fabicon} >
+                        <ArrwowForwardOutlined />
+                      </Fab>
+                    </div>
+                  </div>
                 </Form>
               )}
             </Formik>
