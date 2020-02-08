@@ -13,6 +13,7 @@ import {
 import {
   ApolloProvider,
 } from 'react-apollo';
+import SignupScreen from './screens/signupScreen';
 
 
 
@@ -21,14 +22,18 @@ function App() {
     <ApolloProvider client={client}>
       <BrowserRouter>
         <Switch>
-          <Redirect
+          {/* <Redirect
             from='/'
             exact={true}
             to='/login'
-          />
+          /> */}
           <Route
             path='/login'
             component={LoginScreen}
+          />
+          <Route
+            path='/signup'
+            component={SignupScreen}
           />
         </Switch>
       </BrowserRouter>
