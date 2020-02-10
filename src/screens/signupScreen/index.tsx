@@ -25,6 +25,9 @@ import {
   withRouter,
 } from 'react-router';
 import * as H from 'history';
+import {
+  uploadImage,
+} from '../../helperFunctions/uploadImage';
 
 interface State {
   image: File;
@@ -44,6 +47,7 @@ class SignupScreen extends React.Component<Props, State> {
   }
 
   setImageState = (image: any) => {
+    uploadImage(image, image.name.split('.')[0]);
     this.setState({
       image,
     })
