@@ -18,19 +18,15 @@ import styles from './styles.module.scss';
 import Fab from '@material-ui/core/Fab';
 import ArrowBackOutlined from '@material-ui/icons/ArrowBackOutlined';
 import ArrwowForwardOutlined from '@material-ui/icons/ArrowForwardOutlined';
-import { withRouter, RouteComponentProps } from 'react-router';
-import * as H from 'history';
+import {
+  useHistory,
+} from 'react-router';
 import {
   images,
 } from '../../assests';
 
-interface Props extends RouteComponentProps {
-  history: H.History;
-}
-
-
-class LoginScreen extends React.Component<Props, any> {
-  render() {
+const LoginScreen = () => {
+  const history = useHistory();
     return (
       <div>
         <NavBar />
@@ -100,7 +96,7 @@ class LoginScreen extends React.Component<Props, any> {
                   <div className={styles.buttonConatiner}>
                     <div className={styles.loginButtn}>
                       <Fab size={'medium'} color="default" aria-label="add" className={styles.fabicon} onClick={() => {
-                        this.props.history.push('/signup');
+                        history.push('/signup');
                       }}>
                         <ArrowBackOutlined />
                       </Fab>
@@ -120,10 +116,6 @@ class LoginScreen extends React.Component<Props, any> {
         </div>
       </div>
     );
-  }
 }
 
-export default graphql(signupQuery, {
-  // options: () => ({variables: {email: "hello@gmail.com" , password: "12345678"}}),
-  name: 'signup'
-})(withRouter(LoginScreen));
+export default LoginScreen;

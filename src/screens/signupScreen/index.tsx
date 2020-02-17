@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {
+  useState,
+} from 'react';
 import NavBar from '../../components/navbar';
 import {
   Formik,
@@ -21,10 +23,8 @@ import {
   images,
 } from '../../assests';
 import {
-  RouteComponentProps,
-  withRouter,
+  useHistory,
 } from 'react-router';
-import * as H from 'history';
 import {
   uploadImage,
 } from '../../helperFunctions/uploadImage';
@@ -33,27 +33,16 @@ interface State {
   image: File;
 }
 
-interface Props extends RouteComponentProps {
-  history: H.History;
-}
+const SignupScreen = () => {
 
-class SignupScreen extends React.Component<Props, State> {
+  const [image, setImage] = useState(new File([], ''));
+  const history = useHistory();
 
-  constructor (props: Props) {
-    super(props);
-    this.state = {
-      image: new File([], ''),
-    }
-  }
-
-  setImageState = (image: any) => {
+  const setImageState = (image: any) => {
     uploadImage(image, image.name.split('.')[0]);
-    this.setState({
-      image,
-    })
-  }
+    setImage(image);
+  };
 
-  render() {
     return (
       <div>
         <NavBar />
@@ -104,7 +93,7 @@ class SignupScreen extends React.Component<Props, State> {
                     type="file"
                     accept="image/*"
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                      this.setImageState(event.currentTarget.files![0]);
+                      setImageState(event.currentTarget.files![0]);
                     }}
                     className={styles.fileInput}
                   />
@@ -115,7 +104,7 @@ class SignupScreen extends React.Component<Props, State> {
                     className={styles.fileInputDiv}
                   >
                     <img
-                      src={this.state.image.size > 0 ? URL.createObjectURL(this.state.image): images.emptyImage}
+                      src={image.size > 0 ? URL.createObjectURL(image): images.emptyImage}
                       alt={'profile'}
                       className={styles.imagePreview}
                     />
@@ -161,7 +150,7 @@ class SignupScreen extends React.Component<Props, State> {
                         aria-label="add"
                         className={styles.fabicon}
                         onClick={() => {
-                          this.props.history.push('/login');
+                          history.push('/login');
                         }}
                       >
                         <ArrowBackOutlined />
@@ -183,9 +172,5 @@ class SignupScreen extends React.Component<Props, State> {
       </div>
     );
   }
-}
 
-export default graphql(signupQuery, {
-  // options: () => ({variables: {email: "hello@gmail.com" , password: "12345678"}}),
-  name: 'signup'
-})(withRouter(SignupScreen));
+export default SignupScreen;
