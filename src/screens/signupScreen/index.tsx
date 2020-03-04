@@ -9,11 +9,10 @@ import {
   ErrorMessage,
 } from 'formik';
 import {
-  graphql,
+  useMutation,
 } from 'react-apollo';
-// import {flowRight as compose} from 'lodash';
 import {
-  signupQuery,
+  SIGN_UP,
 } from '../../apollo/requests/authRequests';
 import styles from './styles.module.scss';
 import Fab from '@material-ui/core/Fab';
@@ -29,19 +28,18 @@ import {
   uploadImage,
 } from '../../helperFunctions/uploadImage';
 
-interface State {
-  image: File;
-}
-
 const SignupScreen = () => {
 
   const [image, setImage] = useState(new File([], ''));
+
   const history = useHistory();
 
   const setImageState = (image: any) => {
     uploadImage(image, image.name.split('.')[0]);
     setImage(image);
   };
+
+  const [signUp, { loading, error }] = useMutation(SIGN_UP);
 
     return (
       <div>
@@ -73,14 +71,13 @@ const SignupScreen = () => {
                 }
                 return errors;
               }}
-              onSubmit={(values, { setSubmitting }) => {
+              onSubmit={async (values, { setSubmitting }) => {
                 console.log(values);
-                // this.props.signup({
-                //   variables: {
-                //     email: values.email,
-                //     password: values.password,
-                //   }
-                // })
+                const { data } = await signUp({
+                  variables: { email: values.email, password: values.password },
+                });
+
+                console.log('data ==> ', data);
               }}
             >
               {({ isSubmitting }) => (
@@ -159,7 +156,13 @@ const SignupScreen = () => {
                     </div>
                     <div className={styles.loginButtn}>
                       <p className={styles.signupText}>Sign up</p>
-                      <Fab size={'medium'} color="default" aria-label="add" className={styles.fabicon} >
+                      <Fab
+                        size={'medium'}
+                        color="default"
+                        aria-label="add"
+                        className={styles.fabicon}
+                        type='submit'
+                      >
                         <ArrwowForwardOutlined />
                       </Fab>
                     </div>

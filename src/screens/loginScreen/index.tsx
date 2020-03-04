@@ -7,13 +7,6 @@ import {
   Field,
   ErrorMessage,
 } from 'formik';
-import {
-  graphql,
-} from 'react-apollo';
-// import {flowRight as compose} from 'lodash';
-import {
-  signupQuery,
-} from '../../apollo/requests/authRequests';
 import styles from './styles.module.scss';
 import Fab from '@material-ui/core/Fab';
 import ArrowBackOutlined from '@material-ui/icons/ArrowBackOutlined';
@@ -24,9 +17,20 @@ import {
 import {
   images,
 } from '../../assests';
+import {
+  SIGN_IN,
+} from '../../apollo/requests/authRequests';
+import { useLazyQuery } from '../../customHooks/lazyQuery';
 
 const LoginScreen = () => {
   const history = useHistory();
+
+  const [runQuery, { loading, data }] = useLazyQuery(SIGN_IN,{
+    onCompleted: () => {
+      console.log('data ==>', data);
+    }
+  });
+
     return (
       <div>
         <NavBar />
@@ -56,12 +60,12 @@ const LoginScreen = () => {
               }}
               onSubmit={(values, { setSubmitting }) => {
                 console.log(values);
-                // this.props.signup({
-                //   variables: {
-                //     email: values.email,
-                //     password: values.password,
-                //   }
-                // })
+
+                runQuery({
+                  email: values.email,
+                  password: values.password
+                });
+              
               }}
             >
               {({ isSubmitting }) => (
@@ -104,7 +108,13 @@ const LoginScreen = () => {
                     </div>
                     <div className={styles.loginButtn}>
                       <p className={styles.signupText}>login</p>
-                      <Fab size={'medium'} color="default" aria-label="add" className={styles.fabicon} >
+                      <Fab
+                        size={'medium'}
+                        color="default"
+                        aria-label="add"
+                        className={styles.fabicon}
+                        type='submit'
+                      >
                         <ArrwowForwardOutlined />
                       </Fab>
                     </div>
