@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Profiler } from 'react';
 import './App.css';
 import {
   BrowserRouter,
@@ -14,6 +14,7 @@ import {
   ApolloProvider,
 } from 'react-apollo';
 import SignupScreen from './screens/signupScreen';
+import profileScreen from './screens/profileScreen';
 
 
 
@@ -22,11 +23,6 @@ function App() {
     <ApolloProvider client={client}>
       <BrowserRouter>
         <Switch>
-          {/* <Redirect
-            from='/'
-            exact={true}
-            to='/login'
-          /> */}
           <Route
             path='/login'
             component={LoginScreen}
@@ -34,6 +30,10 @@ function App() {
           <Route
             path='/signup'
             component={SignupScreen}
+          />
+          <Route
+            path='/profile'
+            component={profileScreen}
           />
         </Switch>
       </BrowserRouter>

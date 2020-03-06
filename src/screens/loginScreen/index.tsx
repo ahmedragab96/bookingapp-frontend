@@ -28,6 +28,7 @@ const LoginScreen = () => {
   const [runQuery, { loading, data }] = useLazyQuery(SIGN_IN,{
     onCompleted: () => {
       console.log('data ==>', data);
+      history.push('/profile');
     }
   });
 
