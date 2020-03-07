@@ -226,7 +226,8 @@ export default function PrimarySearchAppBar() {
                 aria-label="account of current user"
                 aria-controls={'primary-search-account-menu'}
                 aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
+                // onClick={handleProfileMenuOpen}
+                onClick={() => history.push('/login')}
                 color="inherit"
               >
                 <AccountCircle />
