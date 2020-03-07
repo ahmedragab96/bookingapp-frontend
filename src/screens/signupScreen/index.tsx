@@ -43,7 +43,6 @@ const SignupScreen = () => {
 
     return (
       <div>
-        <NavBar />
         <div
           className={styles.screenContainer}
         >

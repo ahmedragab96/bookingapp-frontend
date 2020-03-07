@@ -34,7 +34,6 @@ const LoginScreen = () => {
 
     return (
       <div>
-        <NavBar />
         <div
           className={styles.screenContainer}
         >

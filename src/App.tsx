@@ -6,36 +6,23 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom';
-import LoginScreen from './screens/loginScreen';
 import {
   client,
 } from './apollo/apolloConfig';
 import {
   ApolloProvider,
 } from 'react-apollo';
-import SignupScreen from './screens/signupScreen';
-import profileScreen from './screens/profileScreen';
-
+import Layout from './components/layout';
 
 
 function App() {
   return (
     <ApolloProvider client={client}>
       <BrowserRouter>
-        <Switch>
-          <Route
-            path='/login'
-            component={LoginScreen}
-          />
-          <Route
-            path='/signup'
-            component={SignupScreen}
-          />
-          <Route
-            path='/profile'
-            component={profileScreen}
-          />
-        </Switch>
+        <Route
+          path='/'
+          component={Layout}
+        />
       </BrowserRouter>
     </ApolloProvider>
   );
