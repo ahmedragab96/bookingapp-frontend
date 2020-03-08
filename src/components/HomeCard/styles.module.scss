@@ -1,0 +1,11 @@
+.cardContainer {
+  max-width: 400px;
+  height: 400px;
+  border-radius: 0px;
+}
+
+.paperContainer {
+  @media(max-width: 1100px) {
+    margin: 20px;
+  }
+}

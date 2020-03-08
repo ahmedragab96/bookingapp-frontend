@@ -1,5 +1,6 @@
 import React from 'react';
-import { images } from '../../assests';
+import styles from './styles.module.scss';
+
 import {
   Paper,
   Card,
@@ -24,17 +25,13 @@ interface HomeCardProps {
 
 const HomeCard = (props: HomeCardProps) => {
   return (
-    <Paper elevation={2}>
+    <Paper elevation={2} className={styles.paperContainer}>
 
-    <Card
-      style={{
-        maxWidth: 345,
-      }}
-    >
+    <Card className={styles.cardContainer}>
       <CardActionArea>
         <CardMedia
           style={{
-            height: 140
+            height: 220
           }}
           image={props.image}
           title="Contemplative Reptile"

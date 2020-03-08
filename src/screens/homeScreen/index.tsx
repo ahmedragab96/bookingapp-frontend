@@ -9,25 +9,21 @@ import styles from './styles.module.scss';
 const HomeScreen = () => {
   return (
     <div style={{
-      backgroundColor: 'rgba(121, 50, 187, 0.5)'
+      backgroundColor: '#141414'
     }}>
         <Carousel
           infinite
           keepDirectionWhenDragging
           autoPlay={4000}
           animationSpeed={1000}
+          itemWidth={2000}
         >
           <img src={images.eventOne} />
           <img src={images.eventTwo} />
           <img src={images.eventThree} />
           <img src={images.eventFour} />
         </Carousel>
-        <div
-          style={{
-            height: '60vh'
-          }}
-        >
-        <div className={styles.cardsContainer}>
+        <div className={styles.cardsContainer} id={'cards'}>
           {HomeCard({
             image: images.eventOne,
             title: 'Lizard',
@@ -57,7 +53,6 @@ const HomeScreen = () => {
           })}
         </div>
         </div>
-    </div>
   );
 }
 

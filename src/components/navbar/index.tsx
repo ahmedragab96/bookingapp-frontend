@@ -20,7 +20,7 @@ import { useHistory } from 'react-router';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     appBar: {
-      backgroundColor: 'rgb(121, 50, 187)',
+      backgroundColor: 'rgb(16, 15, 18)',
     },
     grow: {
       flexGrow: 1,
@@ -32,6 +32,10 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'none',
       [theme.breakpoints.up('sm')]: {
         display: 'block',
+      },
+      '&:hover': {
+        color: fade(theme.palette.common.white, 0.50),
+        cursor: 'pointer',
       },
     },
     search: {
@@ -163,7 +167,7 @@ export default function PrimarySearchAppBar() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static" className={classes.appBar}>
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
             edge="start"
@@ -173,7 +177,7 @@ export default function PrimarySearchAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Typography className={classes.title} variant="h6" noWrap onClick={() => {history.push('/')}}>
             iEvents
           </Typography>
           <div className={classes.search}>
@@ -193,7 +197,7 @@ export default function PrimarySearchAppBar() {
           <div className={classes.sectionDesktop}>
             <div
               className={styles.eventsTab}
-              onClick={() => alert('events')}
+              // onClick={() => alert('events')}
             >
               <IconButton
                 aria-label="show 4 new mails"
@@ -203,7 +207,7 @@ export default function PrimarySearchAppBar() {
                   <EventIcon />
                 </Badge>
               </IconButton>
-              <p>Events</p>
+              <a href={'#cards'}>Events</a>
             </div>
             <div
               className={styles.eventsTab}
