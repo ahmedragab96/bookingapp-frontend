@@ -1,11 +1,17 @@
-FROM node:13.2.0 AS builder
-WORKDIR /usr/src/app
-COPY package.json yarn.lock ./
-RUN yarn
-COPY . .
-RUN yarn run build
+FROM node:13.2.0
 
-FROM nginx:alpine
-COPY --from=builder /usr/src/app/build /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+ADD yarn.lock /yarn.lock
+ADD package.json /package.json
+
+ENV NODE_PATH=/node_modules
+ENV PATH=$PATH:/node_modules/.bin
+RUN yarn
+
+WORKDIR /app
+ADD . /app
+
+EXPOSE 3000
+EXPOSE 35729
+
+ENTRYPOINT ["/bin/bash", "/app/run.sh"]
+CMD ["start"]
