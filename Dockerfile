@@ -15,3 +15,5 @@ EXPOSE 35729
 
 ENTRYPOINT ["/bin/bash", "/app/run.sh"]
 CMD ["start"]
+
+# docker container run -it -p 3000:3000 -p 35729:35729 -v $(pwd):/app react:app
