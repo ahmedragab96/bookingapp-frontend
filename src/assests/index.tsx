@@ -6,6 +6,7 @@ interface ImagesInterface {
   eventTwo: string;
   eventThree: string;
   eventFour: string;
+  darkBackground: string;
 }
 
 export const images: ImagesInterface = {
@@ -16,4 +17,5 @@ export const images: ImagesInterface = {
   eventTwo: require('./images/event2.jpg'),
   eventThree: require('./images/event3.jpg'),
   eventFour: require('./images/event4.jpg'),
+  darkBackground: require('./images/darkBackground.jpg'),
 };

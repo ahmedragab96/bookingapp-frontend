@@ -13,17 +13,20 @@ import {
   ApolloProvider,
 } from 'react-apollo';
 import Layout from './components/layout';
+import { ParallaxProvider } from 'react-scroll-parallax';
 
 
 function App() {
   return (
     <ApolloProvider client={client}>
-      <BrowserRouter>
-        <Route
-          path='/'
-          component={Layout}
-        />
-      </BrowserRouter>
+      <ParallaxProvider>
+        <BrowserRouter>
+          <Route
+            path='/'
+            component={Layout}
+          />
+        </BrowserRouter>
+      </ParallaxProvider>
     </ApolloProvider>
   );
 }
