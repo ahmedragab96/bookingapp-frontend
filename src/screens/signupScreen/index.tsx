@@ -77,6 +77,7 @@ const SignupScreen = () => {
                 });
 
                 console.log('data ==> ', data);
+                history.push('/profile');
               }}
             >
               {({ isSubmitting }) => (

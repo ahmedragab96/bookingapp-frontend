@@ -1,6 +1,4 @@
 import React from 'react';
-
-import NavBar from '../../components/navbar';
 import {
   Formik,
   Form,
@@ -20,17 +18,38 @@ import {
 import {
   SIGN_IN,
 } from '../../apollo/requests/authRequests';
-import { useLazyQuery } from '../../customHooks/lazyQuery';
+import { useMutation } from '@apollo/react-hooks';
 
-const LoginScreen = () => {
+const asyncLocalStorage = {
+  setItem: async function (key: string, value: string) {
+      await null;
+      return localStorage.setItem(key, value);
+  },
+  getItem: async function (key: string) {
+      await null;
+      return localStorage.getItem(key);
+  }
+};
+
+const LoginScreen: React.FC = () => {
   const history = useHistory();
+  const [signIn , {data , loading , error} ] = useMutation(
+    SIGN_IN,
+    {
+      async update(cache, { data: { login } }) {
+        console.log(login);
+        await asyncLocalStorage.setItem('AuthUser' , JSON.stringify(login));
+        history.push('/');
+      }
+    });
 
-  const [runQuery, { loading, data }] = useLazyQuery(SIGN_IN,{
-    onCompleted: () => {
-      console.log('data ==>', data);
-      history.push('/profile');
-    }
-  });
+  if (loading) {
+    return <div> Loading....</div>;
+  }
+
+  if (error) {
+    return <div> error </div>;
+  }
 
     return (
       <div>
@@ -61,9 +80,11 @@ const LoginScreen = () => {
               onSubmit={(values, { setSubmitting }) => {
                 console.log(values);
 
-                runQuery({
-                  email: values.email,
-                  password: values.password
+                signIn({
+                  variables: {
+                    email: values.email,
+                    password: values.password,
+                  }
                 });
               
               }}

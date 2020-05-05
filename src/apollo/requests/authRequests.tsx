@@ -1,10 +1,10 @@
 import { gql } from 'apollo-boost';
 
 export const SIGN_UP = gql`
- mutation($email: String!, $password: String!) {
-    createUser (userInput: {
-            email: $email,
-            password: $password
+    mutation signUp ($email: String!, $password: String!) {
+        createUser (userInput: {
+                email: $email,
+                password: $password
         }) {
             _id
             email
@@ -13,11 +13,18 @@ export const SIGN_UP = gql`
 `;
 
 export const SIGN_IN = gql`
- 	query($email: String!, $password: String!) {
-	  login(email: $email , password: $password) {
-    	userId
-     token
-    }
-	}
+    mutation logining ($email: String!  , $password: String!) {
+       login(email: $email , password: $password) {
+            token
+            userId
+            ExpirationPeriod
+        }
+   }
+`;
+
+export const IS_LOGGED_IN = gql`
+  query IsUserLoggedIn {
+    isLoggedIn @client
+  }
 `;
 
