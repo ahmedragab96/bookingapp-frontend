@@ -197,7 +197,7 @@ export default function PrimarySearchAppBar() {
           <div className={classes.sectionDesktop}>
             <div
               className={styles.eventsTab}
-              // onClick={() => alert('events')}
+              onClick={() => history.push('/events')}
             >
               <IconButton
                 aria-label="show 4 new mails"
@@ -207,10 +207,11 @@ export default function PrimarySearchAppBar() {
                   <EventIcon />
                 </Badge>
               </IconButton>
-              <a href={'#cards'}>Events</a>
+              <p>Events</p>
             </div>
             <div
               className={styles.eventsTab}
+              onClick={() => history.push('/events')}
             >
               <IconButton
                 aria-label="show 17 new notifications"

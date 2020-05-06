@@ -6,8 +6,10 @@ import HomeCard from '../../components/HomeCard';
 import styles from './styles.module.scss';
 import { Parallax, Background } from 'react-parallax';
 import ParallaxWrapper from '../../components/parallax';
+import { useHistory } from 'react-router-dom';
 
 const HomeScreen = () => {
+  const history = useHistory();
   return (
     <div>
       <ParallaxWrapper
@@ -43,29 +45,29 @@ const HomeScreen = () => {
         <div className={styles.cardsContainer} id={'cards'}>
           {HomeCard({
             image: images.eventOne,
-            title: 'Lizard',
-            content: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica',
+            title: 'Sports Events',
+            content: 'you can book different Sports Events, from car races and bike races events to olympics games',
             actions: [{
               buttonText: 'Learn More',
-              onClick: () => { alert('Events !!!') }
+              onClick: () => { history.push('/events');  }
             }]
           })}
           {HomeCard({
             image: images.eventTwo,
-            title: 'Lizard',
-            content: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica',
+            title: 'Cultural Events',
+            content: 'Cultural and religious Events are a big part in any country, with us you can add your events here and make it easier for people to book it',
             actions: [{
               buttonText: 'Learn More',
-              onClick: () => { alert('Events !!!') }
+              onClick: () => { history.push('/events'); }
             }]
           })}
           {HomeCard({
             image: images.eventThree,
-            title: 'Lizard',
-            content: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica',
+            title: 'Modern Events',
+            content: 'Modern Events include a lot of things: concerts , festivals and even normal small gatherings. Add your events here and let people know about them',
             actions: [{
               buttonText: 'Learn More',
-              onClick: () => { alert('Events !!!') }
+              onClick: () => { history.push('/events'); }
             }]
           })}
         </div>

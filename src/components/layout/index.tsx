@@ -6,6 +6,7 @@ import HomeScreen from '../../screens/homeScreen';
 import AuthenticationRoute from '../AuthRoute';
 import { IS_LOGGED_IN } from '../../apollo/requests/authRequests';
 import { useQuery } from '@apollo/react-hooks';
+import EventsScreen from '../../screens/eventsScreen';
 
 const Layout = () => {
   const [isAuth, setIsAuth] = useState(true);
@@ -21,12 +22,22 @@ const Layout = () => {
     <div>
       <NavBar/>
       <Switch>
-        <AuthenticationRoute
+        {/* <AuthenticationRoute
           path='/'
           exact={true}
           fallbackRoute={'/login'}
           hasPermission={isAuth}
           component={HomeScreen}
+        /> */}
+        <Route
+          path='/'
+          exact
+          component={HomeScreen}
+        />
+        <Route
+          path='/events'
+          exact
+          component={EventsScreen}
         />
         <AuthenticationRoute
           path='/profile'
